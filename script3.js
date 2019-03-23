@@ -12,28 +12,28 @@ const pasterArray = [
     {name: 'croxetti', img: 'pastas/croxetti.png'},
     {name: 'fiori', img: 'pastas/fiori.png'}
 ]
-let clicks = 0
-let count = 0
-let clickOne = ''
-let clickTwo = ''
-let previousClick = null
+var clicks = 0
+var count = 0
+var clickOne = ''
+var clickTwo = ''
+var previousClick = null
 
 // building game grid below
 
-const gameGrid = pasterArray.concat(pasterArray)
+var gameGrid = pasterArray.concat(pasterArray)
 gameGrid.sort(() => 0.5 - Math.random())
-const game = document.getElementById('game')
-const grid = document.createElement('section')
+var game = document.getElementById('game')
+var grid = document.createElement('section')
 grid.className = 'grid'
 game.appendChild(grid)
 
 gameGrid.forEach( paster => {
     
-    const card = document.createElement('div')
+    var card = document.createElement('div')
     card.className = 'card'
     card.dataset.name = paster.name
 
-    const front = document.createElement('div')
+    var front = document.createElement('div')
     front.className = 'front'
     front.style.backgroundImage = 'url(pastas/pot.png)'
 
@@ -50,7 +50,7 @@ gameGrid.forEach( paster => {
 // handling gameplay below
 
 function match (){
-    let selected = document.querySelectorAll('.selected')
+    var selected = document.querySelectorAll('.selected')
     selected.forEach( (card) => card.classList.add('match'))
 }
 
@@ -66,7 +66,7 @@ function resetGuess (){
 function gamePlay(event){
 
     clicks ++
-    let clicked = event.target
+    var clicked = event.target
 
     if (clicked.nodeName === 'SECTION' ||
         clicked === previousClick ||
@@ -74,7 +74,6 @@ function gamePlay(event){
         clicked.parentNode.classList.contains('match')) {
       return
     }
-  
     
     var counter = document.querySelector('.counter')
     counter.innerHTML = 'Current Count: ' + clicks
@@ -83,11 +82,9 @@ function gamePlay(event){
         count++
         if (count === 1) {
             clickOne = clicked.parentNode.dataset.name;
-            console.log(clickOne)
             clicked.parentNode.classList.add('selected');
         } else{
             clickTwo = clicked.parentNode.dataset.name;
-            console.log(clickTwo)
             clicked.parentNode.classList.add('selected')
         }
       }
