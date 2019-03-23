@@ -21,6 +21,7 @@ let previousClick = null
 // building game grid below
 
 const gameGrid = pasterArray.concat(pasterArray)
+gameGrid.sort(() => 0.5 - Math.random())
 const game = document.getElementById('game')
 const grid = document.createElement('section')
 grid.className = 'grid'
@@ -57,6 +58,9 @@ function resetGuess (){
     clickOne = ''
     clickTwo = ''
     previousClick = null
+    count = 0
+    var guesses = document.querySelectorAll('.selected');
+    guesses.forEach( (card) => card.classList.remove('selected'));
 }
 
 function gamePlay(event){
@@ -71,30 +75,42 @@ function gamePlay(event){
       return
     }
   
-    clicked.classList.add('selected')
+    
     var counter = document.querySelector('.counter')
     counter.innerHTML = 'Current Count: ' + clicks
 
     if (count < 2) {
         count++
-        clicked.parentNode.classList.add('selected');
+        if (count === 1) {
+            clickOne = clicked.parentNode.dataset.name;
+            console.log(clickOne)
+            clicked.parentNode.classList.add('selected');
+        } else{
+            clickTwo = clicked.parentNode.dataset.name;
+            console.log(clickTwo)
+            clicked.parentNode.classList.add('selected')
+        }
       }
+
+    if (clickOne && clickTwo){
+        if(clickOne === clickTwo){
+            match();
+        }
+        setTimeout(resetGuess, 1000);
+    }
+    previousClick = clicked
   }
 
 
-grid.addEventListener('click', gamePlay) 
+grid.addEventListener('click', gamePlay)
 
 //handling button click below
 
 var button = document.querySelector('.button')
-    button.addEventListener('click', randomIze)
     button.addEventListener('click', resetIt)
 
-function randomIze(){
-    gameGrid.sort(() => 0.5 - Math.random())
-  }
-
 function resetIt (){
+    gameGrid.sort(() => 0.5 - Math.random())
     clicks = 0
     clickOne = ''
     clickTwo = ''

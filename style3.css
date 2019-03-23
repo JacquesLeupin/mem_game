@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+
 body {
   margin: 20px 0;
 }
@@ -43,7 +44,6 @@ body {
 
 .back {
   transform: rotateY(180deg);
-  background-color: #6589F9;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -53,10 +53,9 @@ body {
     transform: rotateY(180deg);
 }
 
-.match .front {
-  background: #6589F9 !important;
+.match{
+  transform: rotateY(180deg);
 }
-
 .nav, .button{
   top: 0px;
   flex: 0 0 5%;
@@ -65,5 +64,6 @@ body {
   flex-direction: column;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
+
 }
 
