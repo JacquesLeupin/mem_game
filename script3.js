@@ -37,7 +37,7 @@ gameGrid.forEach( paster => {
     front.className = 'front'
     front.style.backgroundImage = 'url(pastas/pot.png)'
 
-    const back = document.createElement('div')
+    var back = document.createElement('div')
     back.className = 'back'
     back.style.backgroundImage = `url(${paster.img})`
     
@@ -107,7 +107,6 @@ var button = document.querySelector('.button')
     button.addEventListener('click', resetIt)
 
 function resetIt (){
-    gameGrid.sort(() => 0.5 - Math.random())
     clicks = 0
     clickOne = ''
     clickTwo = ''
