@@ -12,32 +12,32 @@ const pasterArray = [
     {name: 'croxetti', img: 'pastas/croxetti.png'},
     {name: 'fiori', img: 'pastas/fiori.png'}
 ]
-var clicks = 0
-var count = 0
-var clickOne = ''
-var clickTwo = ''
-var previousClick = null
+let clicks = 0
+let count = 0
+let clickOne = ''
+let clickTwo = ''
+let previousClick = null
 
 // building game grid below
 
-var gameGrid = pasterArray.concat(pasterArray)
+let gameGrid = pasterArray.concat(pasterArray)
 gameGrid.sort(() => 0.5 - Math.random())
-var game = document.getElementById('game')
-var grid = document.createElement('section')
+let game = document.getElementById('game')
+let grid = document.createElement('section')
 grid.className = 'grid'
 game.appendChild(grid)
 
 gameGrid.forEach( paster => {
     
-    var card = document.createElement('div')
+    let card = document.createElement('div')
     card.className = 'card'
     card.dataset.name = paster.name
 
-    var front = document.createElement('div')
+    let front = document.createElement('div')
     front.className = 'front'
     front.style.backgroundImage = 'url(pastas/pot.png)'
 
-    var back = document.createElement('div')
+    let back = document.createElement('div')
     back.className = 'back'
     back.style.backgroundImage = `url(${paster.img})`
     
@@ -50,7 +50,7 @@ gameGrid.forEach( paster => {
 // handling gameplay below
 
 function match (){
-    var selected = document.querySelectorAll('.selected')
+    let selected = document.querySelectorAll('.selected')
     selected.forEach( (card) => card.classList.add('match'))
 }
 
@@ -59,14 +59,14 @@ function resetGuess (){
     clickTwo = ''
     previousClick = null
     count = 0
-    var guesses = document.querySelectorAll('.selected');
+    let guesses = document.querySelectorAll('.selected');
     guesses.forEach( (card) => card.classList.remove('selected'));
 }
 
 function gamePlay(event){
 
     clicks ++
-    var clicked = event.target
+    let clicked = event.target
 
     if (clicked.nodeName === 'SECTION' ||
         clicked === previousClick ||
@@ -75,7 +75,7 @@ function gamePlay(event){
       return
     }
     
-    var counter = document.querySelector('.counter')
+    let counter = document.querySelector('.counter')
     counter.innerHTML = 'Current Count: ' + clicks
 
     if (count < 2) {
@@ -103,7 +103,7 @@ grid.addEventListener('click', gamePlay)
 
 //handling button click below
 
-var button = document.querySelector('.button')
+let button = document.querySelector('.button')
     button.addEventListener('click', resetIt)
 
 function resetIt (){
@@ -111,10 +111,10 @@ function resetIt (){
     clickOne = ''
     clickTwo = ''
     previousClick = null
-    var counter = document.querySelector('.counter')
+    let counter = document.querySelector('.counter')
     counter.innerHTML = 'Current Count: 0' 
-    var select = document.querySelectorAll('.selected')
+    let select = document.querySelectorAll('.selected')
     select.forEach( (card) => card.classList.remove('selected'))
-    var match = document.querySelectorAll('.match')
+    let match = document.querySelectorAll('.match')
     match.forEach( (card) => card.classList.remove('match'))
 }
